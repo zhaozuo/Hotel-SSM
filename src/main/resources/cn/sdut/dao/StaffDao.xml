@@ -4,7 +4,7 @@
 <mapper namespace="cn.sdut.dao.StaffDao">
     <resultMap id="staffResultMap" type="staff">
         <id property="id" column="id"/>
-        <result property="username" column="username"/>
+        <id property="username" column="username"/>
         <result property="password" column="password"/>
         <result property="phone" column="phone"/>
         <result property="role" column="role"/>
@@ -12,6 +12,23 @@
         <result property="idNumber" column="id_number"/>
     </resultMap>
     <select id="findAllStaff" resultMap="staffResultMap">
-        select * from staff
+        select id,username, sex, role, phone, id_number from staff
     </select>
+    <select id="findStaffById" parameterType="Integer" resultMap="staffResultMap">
+        select username, sex, role, phone, id_number from staff where id=#{id}
+    </select>
+    <select id="findStaffByName" parameterType="String" resultMap="staffResultMap">
+        select username, sex, role, phone, id_number from staff where username like concat('%',#{username},'%')
+    </select>
+    <insert id="addStaff" parameterType="staff">
+        insert into staff(username, password, sex, role, phone, id_number) values (#{username},'123456',#{sex},#{role},#{phone},#{idNumber})
+    </insert>
+    <delete id="deleteStaff" parameterType="Integer">
+        delete from staff where id = #{id}
+    </delete>
+    <update id="updateStaff" parameterType="staff">
+        update staff set username=#{username},password=#{password},sex=#{sex},
+                         role=#{role},phone=#{phone},id_number=#{idNumber}
+        where id=#{id}
+    </update>
 </mapper>

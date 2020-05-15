@@ -22,7 +22,6 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    @Transactional
     public void addStaff(Staff staff) {
         staffDao.addStaff(staff);
     }

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sdut.dao.OrderDao">
+    <resultMap id="orderResultMap" type="order">
+        <id property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="roomId" column="room_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="beginDate" column="begin_date"/>
+        <result property="endDate" column="end_date"/>
+        <result property="roomQuantity" column="room_quantity"/>
+        <result property="price" column="price"/>
+    </resultMap>
+    <select id="findAllOrder" resultMap="orderResultMap">
+        select id, user_id, room_id, create_time, begin_date, end_date, room_quantity, price from `order`
+    </select>
+    <select id="findOrderById" resultMap="orderResultMap" parameterType="Integer">
+        select user_id, room_id, create_time, begin_date, end_date, room_quantity, price
+        from `order` where id = #{id}
+    </select>
+    <insert id="addOrder" parameterType="order">
+        insert into `order`(user_id, room_id, create_time, begin_date, end_date, room_quantity, price)
+        values (#{userId},#{roomId},#{createTime},#{beginDate},#{endDate},#{roomQuantity},#{price})
+    </insert>
+    <delete id="deleteOrder" parameterType="Integer">
+        delete from `order` where id = #{id}
+    </delete>
+</mapper>

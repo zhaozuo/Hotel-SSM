@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sdut.dao.UserDao">
+    <resultMap id="userResultMap" type="user">
+        <id property="id" column="id"/>
+        <id property="phone" column="phone"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="email" column="email"/>
+        <result property="idNumber" column="id_number"/>
+        <result property="sex" column="sex"/>
+        <result property="photoData" column="photo_data"/>
+    </resultMap>
+    <select id="findUserByPhone" resultMap="userResultMap" parameterType="String">
+        select id,username,password,sex,phone,email,id_number,photo_data from user where phone = #{phone}
+    </select>
+    <select id="findUserById" resultMap="userResultMap" parameterType="Integer">
+        select username,password,sex,phone,email,id_number,photo_data from user where id = #{id}
+    </select>
+    <select id="findAllUser" resultMap="userResultMap">
+        select id,username,password,sex,phone,email,id_number,photo_data from user
+    </select>
+    <insert id="addUser" parameterType="user">
+        insert into user(username, password, sex, email, phone, id_number, photo_data)
+        values (#{username},#{password},#{sex},#{email},#{phone},#{idNumber},#{photoData})
+    </insert>
+    <delete id="deleteUser" parameterType="Integer">
+        delete from user where id = #{id}
+    </delete>
+    <update id="updateUser" parameterType="user">
+        update user set username=#{username},password=#{password},sex=#{sex},
+                         email=#{email},phone=#{phone},id_number=#{idNumber},photo_data=#{photoData}
+        where id=#{id}
+    </update>
+</mapper>

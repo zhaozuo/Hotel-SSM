@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sdut.dao.AccountDao">
+	<!-- 顾客插入操作 -->
+	<insert id="add" parameterType="cn.sdut.entity.Account">
+		insert into account(id,name,password,realName,idCard,mobile,address) values(null,#{name},#{password},#{realName},#{idCard},#{mobile},#{address})
+	</insert>
+	<!-- 顾客编辑操作 -->
+	<update id="edit" parameterType="cn.sdut.entity.Account">
+		update account set name = #{name},password = #{password},realName = #{realName},idCard = #{idCard},mobile = #{mobile},address = #{address} where id = #{id}
+	</update>
+	<!--上传头像-->
+	<update id="addPhoto" parameterType="cn.sdut.entity.Account">
+		update account set photo = #{photo} where id = #{id}
+	</update>
+	<!-- 顾客信息搜索查询 -->
+	<select id="findList" parameterType="Map" resultType="cn.sdut.entity.Account">
+		select * from account where 1 = 1 
+		<if test="name != null">
+			and name like '%${name}%' 
+		</if>
+		<if test="realName != null">
+			and realName like '%${realName}%' 
+		</if>
+		<if test="idCard != null">
+			and idCard like '%${idCard}%' 
+		</if>
+		<if test="mobile != null">
+			and mobile like '%${mobile}%' 
+		</if>
+		<if test="offset != null and pageSize != null">
+			limit #{offset},#{pageSize}
+		</if>
+	</select>
+	<!-- 根据用户名获取顾客信息 -->
+	<select id="findByName" parameterType="String" resultType="cn.sdut.entity.Account">
+		select * from account where name = #{value}
+	</select>
+	<!-- 获取所有顾客信息 -->
+	<select id="findAll" parameterType="String" resultType="cn.sdut.entity.Account">
+		select * from account
+	</select>
+	<!-- 获取单个顾客信息 -->
+	<select id="find" parameterType="Long" resultType="cn.sdut.entity.Account">
+		select * from account where id = #{value}
+	</select>
+	<!-- 模糊搜索总条数 -->
+	<select id="getTotal" parameterType="Map" resultType="Integer">
+		select count(*) from account where 1=1  
+		<if test="name != null">
+			and name like '%${name}%' 
+		</if>
+		<if test="realName != null">
+			and realName like '%${realName}%' 
+		</if>
+		<if test="idCard != null">
+			and idCard like '%${idCard}%' 
+		</if>
+		<if test="mobile != null">
+			and mobile like '%${mobile}%' 
+		</if>
+	</select>
+	<!-- 删除顾客信息 -->
+	<delete id="delete" parameterType="Long">
+		delete from account where id = ${value}
+	</delete>
+</mapper>

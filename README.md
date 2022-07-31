@@ -6,6 +6,9 @@
 ## 技术栈
 SSM+EasyUI+MySQL+Tomcat，其中还用到了部分`OpenCV`的技术
 ## 系统截图
-![人脸对比](https://github.com/zhaozuo/Hotel-SSM/blob/master/img/%E4%BA%BA%E8%84%B8%E5%AF%B9%E6%AF%94.png)人脸对比
 ![人脸对比](https://github.com/zhaozuo/Hotel-SSM/blob/master/img/人脸对比.png)人脸对比
-![比对结果](img\比对结果.png)比对结果
+![比对结果](https://github.com/zhaozuo/Hotel-SSM/blob/master/img/比对结果.png)比对结果
+![添加房间](https://github.com/zhaozuo/Hotel-SSM/blob/master/img/添加房间.png)添加房间
+![添加主界面](https://github.com/zhaozuo/Hotel-SSM/blob/master/img/添加主界面.png)添加主界面
+![获取预订订单信息](https://github.com/zhaozuo/Hotel-SSM/blob/master/img/获取预订订单信息.png)获取预订订单信息
+![营业统计信息](https://github.com/zhaozuo/Hotel-SSM/blob/master/img/营业统计信息.png)营业统计信息
